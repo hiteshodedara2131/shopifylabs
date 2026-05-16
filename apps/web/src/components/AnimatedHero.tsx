@@ -2,15 +2,15 @@
 
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { FaNpm } from "react-icons/fa";
 
 export default function AnimatedHero() {
-	const [isMounted, setIsMounted] = useState(false);
-
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
+	const isMounted = useSyncExternalStore(
+		() => () => {},
+		() => true,
+		() => false,
+	);
 
 	const x = useMotionValue(0);
 	const y = useMotionValue(0);

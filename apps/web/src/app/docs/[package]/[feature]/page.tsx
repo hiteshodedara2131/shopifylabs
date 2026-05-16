@@ -306,7 +306,9 @@ export default async function FeaturePage({
 					<h3 className="text-brand-teal font-bold mb-2 flex items-center gap-2">
 						<FiBox className="w-4 h-4" /> Shopify Use Case
 					</h3>
-					<p className="text-slate-300 italic">"{doc.shopifyUseCase}"</p>
+					<p className="text-slate-300 italic">
+						&quot;{doc.shopifyUseCase}&quot;
+					</p>
 				</div>
 			)}
 		</div>

@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { IconType } from "react-icons";
 import {
 	FiBook,
@@ -128,6 +128,7 @@ export default function DocsSidebar() {
 	const router = useRouter();
 	const [isOpen, setIsOpen] = useState(true);
 	const [expandedSections, setExpandedSections] = useState<string[]>([]);
+	const [lastPathname, setLastPathname] = useState(pathname);
 
 	// Determine current package from pathname
 	const currentPackageId =
@@ -135,16 +136,22 @@ export default function DocsSidebar() {
 	const currentPackage =
 		PACKAGES.find((p) => p.id === currentPackageId) || PACKAGES[0];
 
-	useEffect(() => {
-		// Expand sections that contain the active link
+	// Sync expanded sections when pathname changes (during render)
+	if (pathname !== lastPathname) {
+		setLastPathname(pathname);
 		const sectionsToExpand: string[] = [];
 		DOC_STRUCTURE[currentPackageId]?.forEach((section: DocSection) => {
 			if (section.items?.some((item: DocItem) => item.href === pathname)) {
 				sectionsToExpand.push(section.title);
 			}
 		});
-		setExpandedSections((prev) => [...new Set([...prev, ...sectionsToExpand])]);
-	}, [pathname, currentPackageId]);
+
+		if (sectionsToExpand.length > 0) {
+			setExpandedSections((prev) => [
+				...new Set([...prev, ...sectionsToExpand]),
+			]);
+		}
+	}
 
 	const toggleSection = (title: string) => {
 		setExpandedSections((prev) =>
