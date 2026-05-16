@@ -7,13 +7,10 @@ import { $ } from "../query/$.js";
  * @param html - The HTML string to append
  * @returns The updated element, or null if not found
  */
-export const append = (
-  selector: string,
-  html: string
-): HTMLElement | null => {
-  const element = $(selector);
-  if (element) {
-    element.insertAdjacentHTML("beforeend", html);
-  }
-  return element;
+export const append = (selector: string, html: string): HTMLElement | null => {
+	const element = $(selector);
+	if (element) {
+		element.insertAdjacentHTML("beforeend", html);
+	}
+	return element;
 };

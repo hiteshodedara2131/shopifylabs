@@ -7,10 +7,10 @@
  * @param options - Optional event listener options
  */
 export const off = (
-  element: HTMLElement | Document,
-  eventName: string,
-  handler: EventListener,
-  options?: EventListenerOptions
+	element: HTMLElement | Document,
+	eventName: string,
+	handler: EventListener,
+	options?: EventListenerOptions,
 ): void => {
-  element.removeEventListener(eventName, handler, options);
+	element.removeEventListener(eventName, handler, options);
 };

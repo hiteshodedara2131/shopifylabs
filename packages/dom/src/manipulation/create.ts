@@ -9,21 +9,21 @@ type Attributes = Record<string, string>;
  * @returns The newly created element
  */
 export const create = <T extends HTMLElement = HTMLElement>(
-  tag: string,
-  attributes?: Attributes,
-  innerHTML?: string
+	tag: string,
+	attributes?: Attributes,
+	innerHTML?: string,
 ): T => {
-  const element = document.createElement(tag) as T;
+	const element = document.createElement(tag) as T;
 
-  if (attributes) {
-    for (const [key, value] of Object.entries(attributes)) {
-      element.setAttribute(key, value);
-    }
-  }
+	if (attributes) {
+		for (const [key, value] of Object.entries(attributes)) {
+			element.setAttribute(key, value);
+		}
+	}
 
-  if (innerHTML !== undefined) {
-    element.innerHTML = innerHTML;
-  }
+	if (innerHTML !== undefined) {
+		element.innerHTML = innerHTML;
+	}
 
-  return element;
+	return element;
 };

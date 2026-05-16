@@ -10,35 +10,35 @@ type EventHandler<T extends Event = Event> = (event: T) => void;
  * @returns A cleanup function that removes the listener
  */
 export const on = <T extends Event = Event>(
-  eventName: string,
-  selectorOrElement: string | HTMLElement,
-  handler: EventHandler<T>,
-  options?: AddEventListenerOptions
+	eventName: string,
+	selectorOrElement: string | HTMLElement,
+	handler: EventHandler<T>,
+	options?: AddEventListenerOptions,
 ): (() => void) => {
-  if (typeof selectorOrElement === "string") {
-    // Delegated event — listen on document, match selector
-    const delegatedHandler = (event: Event) => {
-      const target = (event.target as HTMLElement)?.closest(selectorOrElement);
-      if (target) {
-        handler(event as T);
-      }
-    };
+	if (typeof selectorOrElement === "string") {
+		// Delegated event — listen on document, match selector
+		const delegatedHandler = (event: Event) => {
+			const target = (event.target as HTMLElement)?.closest(selectorOrElement);
+			if (target) {
+				handler(event as T);
+			}
+		};
 
-    document.addEventListener(eventName, delegatedHandler, options);
-    return () =>
-      document.removeEventListener(eventName, delegatedHandler, options);
-  }
+		document.addEventListener(eventName, delegatedHandler, options);
+		return () =>
+			document.removeEventListener(eventName, delegatedHandler, options);
+	}
 
-  // Direct binding
-  selectorOrElement.addEventListener(
-    eventName,
-    handler as EventListener,
-    options
-  );
-  return () =>
-    selectorOrElement.removeEventListener(
-      eventName,
-      handler as EventListener,
-      options
-    );
+	// Direct binding
+	selectorOrElement.addEventListener(
+		eventName,
+		handler as EventListener,
+		options,
+	);
+	return () =>
+		selectorOrElement.removeEventListener(
+			eventName,
+			handler as EventListener,
+			options,
+		);
 };

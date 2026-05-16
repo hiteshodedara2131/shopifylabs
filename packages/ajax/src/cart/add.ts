@@ -3,42 +3,42 @@ import { request } from "../fetch/request.js";
 // ─── Shopify Cart Types ───────────────────────────────────────────────
 
 export interface CartItem {
-  id: number;
-  quantity: number;
-  properties?: Record<string, string>;
+	id: number;
+	quantity: number;
+	properties?: Record<string, string>;
 }
 
 export interface CartLineItem {
-  id: number;
-  quantity: number;
-  title: string;
-  price: number;
-  line_price: number;
-  variant_id: number;
-  product_id: number;
-  image: string;
-  url: string;
-  properties: Record<string, string>;
+	id: number;
+	quantity: number;
+	title: string;
+	price: number;
+	line_price: number;
+	variant_id: number;
+	product_id: number;
+	image: string;
+	url: string;
+	properties: Record<string, string>;
 }
 
 export interface CartResponse {
-  token: string;
-  note: string | null;
-  attributes: Record<string, string>;
-  total_price: number;
-  total_weight: number;
-  item_count: number;
-  items: CartLineItem[];
-  requires_shipping: boolean;
-  currency: string;
+	token: string;
+	note: string | null;
+	attributes: Record<string, string>;
+	total_price: number;
+	total_weight: number;
+	item_count: number;
+	items: CartLineItem[];
+	requires_shipping: boolean;
+	currency: string;
 }
 
 export interface CartAddResponse {
-  items: CartLineItem[];
+	items: CartLineItem[];
 }
 
 export interface CartUpdatePayload {
-  updates: Record<number, number>;
+	updates: Record<number, number>;
 }
 
 // ─── Cart API ─────────────────────────────────────────────────────────
@@ -53,13 +53,13 @@ const CART_BASE = "/cart";
  * await add({ id: 123456, quantity: 2, properties: { engraving: "Hello" } })
  */
 export const add = async (
-  item: CartItem | CartItem[]
+	item: CartItem | CartItem[],
 ): Promise<CartAddResponse> => {
-  const items = Array.isArray(item) ? item : [item];
-  return request<CartAddResponse>(`${CART_BASE}/add.js`, {
-    method: "POST",
-    body: { items },
-  });
+	const items = Array.isArray(item) ? item : [item];
+	return request<CartAddResponse>(`${CART_BASE}/add.js`, {
+		method: "POST",
+		body: { items },
+	});
 };
 
 /**
@@ -71,23 +71,23 @@ export const add = async (
  * await update({ 123456: 2, 789012: 0 })
  */
 export const update = async (
-  updates: Record<number, number>
+	updates: Record<number, number>,
 ): Promise<CartResponse> =>
-  request<CartResponse>(`${CART_BASE}/update.js`, {
-    method: "POST",
-    body: { updates },
-  });
+	request<CartResponse>(`${CART_BASE}/update.js`, {
+		method: "POST",
+		body: { updates },
+	});
 
 /**
  * Clears the entire Shopify cart.
  */
 export const clear = async (): Promise<CartResponse> =>
-  request<CartResponse>(`${CART_BASE}/clear.js`, {
-    method: "POST",
-  });
+	request<CartResponse>(`${CART_BASE}/clear.js`, {
+		method: "POST",
+	});
 
 /**
  * Fetches the current cart state.
  */
 export const get = async (): Promise<CartResponse> =>
-  request<CartResponse>(`${CART_BASE}.js`);
+	request<CartResponse>(`${CART_BASE}.js`);

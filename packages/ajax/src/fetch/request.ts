@@ -1,7 +1,7 @@
 export interface RequestOptions {
-  method?: "GET" | "POST" | "PUT" | "DELETE";
-  headers?: Record<string, string>;
-  body?: unknown;
+	method?: "GET" | "POST" | "PUT" | "DELETE";
+	headers?: Record<string, string>;
+	body?: unknown;
 }
 
 /**
@@ -12,27 +12,27 @@ export interface RequestOptions {
  * - Throws on non-ok responses with status info.
  */
 export const request = async <T = unknown>(
-  url: string,
-  options: RequestOptions = {}
+	url: string,
+	options: RequestOptions = {},
 ): Promise<T> => {
-  const { method = "GET", headers = {}, body } = options;
+	const { method = "GET", headers = {}, body } = options;
 
-  const response = await fetch(url, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      ...headers,
-    },
-    body: body !== undefined ? JSON.stringify(body) : undefined,
-  });
+	const response = await fetch(url, {
+		method,
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+			...headers,
+		},
+		body: body !== undefined ? JSON.stringify(body) : undefined,
+	});
 
-  if (!response.ok) {
-    const errorText = await response.text().catch(() => "Unknown error");
-    throw new Error(
-      `[ShopifyLabs] Request failed: ${response.status} ${response.statusText} — ${errorText}`
-    );
-  }
+	if (!response.ok) {
+		const errorText = await response.text().catch(() => "Unknown error");
+		throw new Error(
+			`[ShopifyLabs] Request failed: ${response.status} ${response.statusText} — ${errorText}`,
+		);
+	}
 
-  return response.json() as Promise<T>;
+	return response.json() as Promise<T>;
 };

@@ -1,8 +1,8 @@
-export { add, update, clear, get } from "./add.js";
 export type {
-  CartItem,
-  CartLineItem,
-  CartResponse,
-  CartAddResponse,
-  CartUpdatePayload,
+	CartAddResponse,
+	CartItem,
+	CartLineItem,
+	CartResponse,
+	CartUpdatePayload,
 } from "./add.js";
+export { add, clear, get, update } from "./add.js";

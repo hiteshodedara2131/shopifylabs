@@ -8,9 +8,9 @@ import { dirname } from "node:path";
  * @param content - The file content
  */
 export const writeFile = async (
-  filePath: string,
-  content: string
+	filePath: string,
+	content: string,
 ): Promise<void> => {
-  await mkdir(dirname(filePath), { recursive: true });
-  await fsWriteFile(filePath, content, "utf-8");
+	await mkdir(dirname(filePath), { recursive: true });
+	await fsWriteFile(filePath, content, "utf-8");
 };
