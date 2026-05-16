@@ -3,8 +3,8 @@ import { deepMerge } from "./deepMerge.js";
 
 describe("deepMerge", () => {
 	it("should merge simple objects", () => {
-		const obj1: any = { a: 1 };
-		const obj2: any = { b: 2 };
+		const obj1: Record<string, unknown> = { a: 1 };
+		const obj2: Record<string, unknown> = { b: 2 };
 		expect(deepMerge(obj1, obj2)).toEqual({ a: 1, b: 2 });
 	});
 
@@ -15,14 +15,14 @@ describe("deepMerge", () => {
 	});
 
 	it("should deeply merge nested objects", () => {
-		const obj1: any = { a: { b: 1, c: 2 } };
-		const obj2: any = { a: { c: 3, d: 4 } };
+		const obj1: Record<string, unknown> = { a: { b: 1, c: 2 } };
+		const obj2: Record<string, unknown> = { a: { c: 3, d: 4 } };
 		expect(deepMerge(obj1, obj2)).toEqual({ a: { b: 1, c: 3, d: 4 } });
 	});
 
 	it("should overwrite arrays completely", () => {
-		const obj1: any = { a: [1, 2] };
-		const obj2: any = { a: [3, 4] };
+		const obj1: Record<string, unknown> = { a: [1, 2] };
+		const obj2: Record<string, unknown> = { a: [3, 4] };
 		expect(deepMerge(obj1, obj2)).toEqual({ a: [3, 4] });
 	});
 });

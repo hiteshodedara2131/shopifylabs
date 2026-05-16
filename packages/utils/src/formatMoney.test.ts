@@ -14,6 +14,7 @@ describe("formatMoney", () => {
 		expect(formatMoney(1999, "€{{amount_with_comma_separator}}")).toBe(
 			"€19,99",
 		);
+		// biome-ignore lint/suspicious/noTemplateCurlyInString: Shopify template testing
 		expect(formatMoney(1999, "${{amount_no_decimals}}")).toBe("$20");
 	});
 

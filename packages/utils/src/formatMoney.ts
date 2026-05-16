@@ -6,9 +6,9 @@
  * @param formatString - Optional. A format string like "${{amount}}" or "€{{amount_with_comma_separator}}"
  * @returns Formatted money string
  */
-// biome-ignore lint/suspicious/noTemplateCurlyInString: Shopify uses this exact syntax for template placeholders
 export const formatMoney = (
 	cents: string | number,
+	// biome-ignore lint/suspicious/noTemplateCurlyInString: Shopify uses this exact syntax for template placeholders
 	formatString = "${{amount}}",
 ): string => {
 	if (typeof cents === "string") {
