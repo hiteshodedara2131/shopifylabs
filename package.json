@@ -1,0 +1,22 @@
+{
+  "name": "shopifylabs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A modular TypeScript toolkit for Shopify theme development",
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

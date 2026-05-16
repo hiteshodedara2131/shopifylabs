@@ -1,0 +1,41 @@
+{
+  "name": "@shopifylabs/cli",
+  "version": "0.1.0",
+  "description": "CLI generator for Shopify theme sections",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "shopifylabs": "dist/bin/index.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["shopify", "cli", "generator", "sections", "theme", "shopifylabs"],
+  "author": "ShopifyLabs",
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "rimraf": "^6.0.1"
+  },
+  "license": "MIT"
+}
